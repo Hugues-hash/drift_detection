@@ -105,7 +105,7 @@ Walk-forward Ridge regression backtest → rolling RMSE and directional accuracy
 ## Installation
 
 ```bash
-git clone https://github.com/Hugues-hash/drift_detection.git
+git clone https://github.com/<your-username>/drift_detection.git
 cd drift_detection
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
