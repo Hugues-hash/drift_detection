@@ -6,12 +6,12 @@ An implementation of **market regime detection and distribution drift monitoring
 
 ## Problem Statement
 
-Financial time series are **non-stationary**: their statistical properties (mean, variance) change over time. Models trained on historical data silently degrade when the market regime shifts which is a critical failure in deployed quantitative systems.
+Financial time series are non-stationary: their statistical properties (mean, variance) change over time. Models trained on historical data silently degrade when the market regime shifts which is a critical failure in deployed quantitative systems.
 
 This project investigates:
-- How distribution shift can be **detected** using statistical methods
-- How **predictive model performance** evolves under regime transitions
-- Whether **drift signals correlate with performance degradation** (enabling proactive monitoring)
+- How distribution shift can be detected using statistical methods
+- How predictive model performance evolves under regime transitions
+- Whether drift signals correlate with performance degradation (enabling proactive monitoring)
 
 ---
 
@@ -77,7 +77,13 @@ Feature construction at three time scales (20d, 60d, 252d): rolling volatility, 
 - Method comparison and regime agreement analysis.
 
 ### `04_model_monitoring.ipynb`
-Walk-forward Ridge regression backtest → rolling RMSE and directional accuracy → PSI / KL / KS drift metrics → Pearson correlation between drift intensity and model error → regime-stratified performance → feature importance evolution over time → full monitoring dashboard.
+- Walk-forward Ridge regression backtest 
+- rolling RMSE and directional accuracy 
+- PSI / KL / KS drift metrics 
+- Pearson correlation between drift intensity and model error 
+- regime-stratified performance 
+- feature importance evolution over time 
+- full monitoring dashboard.
 
 ---
 
@@ -87,17 +93,17 @@ Walk-forward Ridge regression backtest → rolling RMSE and directional accuracy
 |---|---|
 | Asset | S&P 500 ETF (SPY) |
 | Frequency | Daily |
-| Period | Jan 2005 – Feb 2026 |
+| Period | Jan 2005 – Mar 2026 |
 | Source | Yahoo Finance (public data via `yfinance`) |
-| Observations | ~5,300 trading days |
+| Observations | ~5,337 trading days |
 
 ---
 
 ## Key Results
 
-- **Regime persistence**: The HMM transition matrix confirms that both low- and high-volatility regimes are highly persistent (P(stay) > 0.95), consistent with empirical findings in the regime-switching literature.
-- **Crisis detection**: KS tests successfully identify structural breaks at known market events (GFC 2008, COVID 2020, 2022 rate-hike bear market).
-- **Drift–performance link**: PSI and KS statistics are positively correlated with rolling RMSE — distribution drift predicts model performance degradation.
+- **Regime persistence**: The HMM transition matrix confirms that both low and high-volatility regimes are highly persistent (P(stay) > 0.95).
+- **Crisis detection**: KS tests successfully identify structural breaks at known market events (GFC 2008, COVID 2020, 2022 bear market).
+- **Drift–performance link**: PSI and KS statistics are positively correlated with rolling RMSE. Distribution drift predicts model performance degradation.
 - **Regime-conditional performance**: The baseline model performs significantly worse in high-volatility regimes, confirming that crisis dynamics are not captured by a model trained on calm-market data.
 
 ---
